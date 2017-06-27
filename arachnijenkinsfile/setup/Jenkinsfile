@@ -1,0 +1,31 @@
+pipeline {
+    agent {
+        label 'DockerHost'
+    }
+    parameters {
+	string(
+            name: 'DOCKER_COMPOSE_FILE', 
+            defaultValue: 'arachnicompose/v4/docker-compose.yml', 
+            description: 'Path of the Arachni docker-compose.yaml.')
+     	string(
+            name: 'DOCKER_HOST_WebUI', 
+            defaultValue: 'tcp://127.0.0.1:2375', 
+            description: 'Socket tcp of the WebUI Docker host.')
+       	string(
+            name: 'DISPATCHERS', 
+            defaultValue: '4', 
+            description: 'Number of dispatcher created by the docker-compose scale command.')
+        booleanParam(
+            name: 'IMPORT_SCAN', 
+            defaultValue: false , 
+            description: 'Import previous scan.')
+    }
+    stages {
+        stage('SetUpArachni') {
+            steps {
+                sh "./setup.sh ${params.DOCKER_COMPOSE_FILE} ${params.DOCKER_HOST_WebUI} ${params.DISPATCHERS} ${params.IMPORT_SCAN} "
+            }
+	}
+    }
+}
+

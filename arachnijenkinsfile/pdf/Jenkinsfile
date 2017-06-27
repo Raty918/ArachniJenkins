@@ -1,0 +1,26 @@
+pipeline {
+    agent {
+        label 'DockerHost'
+    }
+    parameters {
+        
+        string(
+            name: 'DOCKER_HOST_WebUI', 
+            defaultValue: 'tcp://127.0.0.1:2375', 
+            description: 'Socket tcp of the WebUI Docker host.')
+       
+	string(
+            name: 'REPORT_NAME', 
+            defaultValue: 'report', 
+            description: 'Name of the afr report tou want to convert into a Pdf.')
+	    		
+    }
+    stages {
+        stage('PdfArachni') {
+            steps {
+                sh "./scirpt.sh ${params.DOCKER_HOST_WebUI} ${params.REPORT_NAME}"
+            }
+        }
+    }
+}
+
