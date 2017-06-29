@@ -5,13 +5,13 @@ SCAN_OPTIONS=" $3 --spawns="$4" --grid-mode="$5" --checks="$9" --report-save-pat
 #SCOPE_DIRECTORY_DEPTH_LIMIT option
 if [ "$6" != "inf" ]; 
         then
-                SCAN_OPTIONS="$SCAN_OPTIONS --scope-directory-depth-limit=$6"
+                SCAN_OPTIONS="$SCAN_OPTIONS --scope-directory-depth-limit=$6 "
 fi
 
 #SCOPE_PAGE_LIMIT option
-if [ "$7" != "inf" && "$10" = false ]; 
+if [ "$7" != "inf" ] && [ "$10" = false ]
         then
-                SCAN_OPTIONS="$SCAN_OPTIONS --scope-page-limit=$7 "
+              	SCAN_OPTIONS="$SCAN_OPTIONS --scope-page-limit=$7 "
 fi
 
 #Proxy Plugin Activated 
@@ -19,10 +19,11 @@ if [ "$10" = true ];
         then
 		# To skip crawling and only audit elements discovered by using the proxy
 		# the scope page-limit option is set to '0'.
+		
+       		SCAN_OPTIONS="$SCAN_OPTIONS --plugin 'proxy:bind_address=0.0.0.0' --scope-page-limit=0 "
+fi
 
-       		 SCAN_OPTIONS="$SCAN_OPTIONS --plugin 'proxy:bind_address=0.0.0.0' --scope-page-limit=0 "
-fi	
-	
+        
 #Send scan command to the RPC Server
 if [ "$1" != "default" ]; #DISPATCHER_GRID_HOST not set
         then
