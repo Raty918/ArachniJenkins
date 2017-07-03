@@ -9,7 +9,7 @@ if [ "$6" != "inf" ];
 fi
 
 #SCOPE_PAGE_LIMIT option
-if [ "$7" != "inf" ] && [ "$10" = false ]
+if [ "$7" != "inf" ]
         then
               	SCAN_OPTIONS="$SCAN_OPTIONS --scope-page-limit=$7 "
 fi
