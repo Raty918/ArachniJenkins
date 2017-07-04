@@ -1,12 +1,21 @@
-# arachnijenkinsproject
+arachnijenkinsproject
+
 by Raty918
 
 
-## arachnicompose: 
+arachnicompose:
+
 It contains arachni images with docker-compose.yml
 
-## arachnijenkinsfile:
+
+arachnijenkinsfile:
+
 It contains Jenkins jobs. Just choose the job you want to launch. copy it at the root of your repository with the   arachnicompose folder.
 
-## report.pdf: 
+
+report.pdf:
+
 It's an example of a pdf report generated with the project.
+
+
+/!\ Don't forget to change agent label in the Jenkinfile /!\
